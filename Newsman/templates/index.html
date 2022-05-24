@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% load static %}
+<head>
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% endblock styles %}
+</head>
+<h1>{{post.title}}</h1>
+{% block main %}
+<div class="news">
+    <div class="container">
+        <div class="posts">
+        {% for post in posts %}
+            <div class="post-item">
+                <div class="post-img">
+                    <img src="{{ post.photo.url }}" width="373" height="300" class="card-img-top" alt="...">
+                </div>
+                <div class="post-info">
+                    <div class="post-tag">{{post.cat}}</div>
+                    <div class="post-date">{{post.time_create | date:"d"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+                        {{post.time_create | date:"Y"}}
+                    </div>
+                </div>
+                <div class="post-title">{{post.title | truncatechars:60}}</div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">NewSpace</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{% url 'home' %}" role="button">Главная</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{% url 'add_news' %}" role="button">Новый пост</a>
+          </li>
+          {% endif %}
+        </ul>
+        <span class="navbar-text">
+          {% if request.user.is_authenticated %}
+          Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}">Выход</a>
+          {% else %}
+          <a href="{% url 'register' %}">Register</a> |
+          <a href="{% url 'login' %}">Login</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </nav>
