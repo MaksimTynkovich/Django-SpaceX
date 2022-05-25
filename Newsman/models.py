@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE)
     auth_token = models.CharField(max_length=100 )
@@ -33,7 +31,7 @@ class News(models.Model):
     class Meta:
         verbose_name = 'Новости'
         verbose_name_plural = 'Новости'
-        ordering = ['id']
+        ordering = ['-id']
 
 
 class Category(models.Model):

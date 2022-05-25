@@ -9,13 +9,16 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView
+import datetime
 
 def index(request):
     posts = News.objects.all()
-
+    date = datetime.datetime.today()
+    time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     context = {
         'posts': posts,
-        'title': "Новости"
+        'title': "Новости",
+        'time': time
     }
 
     return render(request, 'index.html', context=context)
@@ -106,7 +109,6 @@ def token_send(request):
     return render(request , 'token_send.html')
 
 
-
 def verify(request , auth_token):
     try:
         profile_obj = Profile.objects.filter(auth_token = auth_token).first()
@@ -126,12 +128,6 @@ def verify(request , auth_token):
 
 def error_page(request):
     return  render(request , 'error.html')
-
-
-
-
-
-
 
 
 def send_mail_after_registration(email , token):
