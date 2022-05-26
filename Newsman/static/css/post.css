@@ -1,0 +1,20 @@
+.post{
+    padding-top: 150px;
+}
+
+.post-title{
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 44px;
+    color: #000;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.post-date{
+    margin-top: 44px;
+    font-family: 'Exo 2.0';
+    font-size: 20px;
+    line-height: 150%;
+    color: #646A6F;
+}

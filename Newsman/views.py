@@ -13,23 +13,34 @@ import datetime
 
 def index(request):
     posts = News.objects.all()
+    recommendations_posts = posts.all()[:3]
+    posts_first = posts.all()[:3]
+    posts_two = posts.all()[3:]
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
+    day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     context = {
-        'posts': posts,
+        'recommendations_posts': recommendations_posts,
         'title': "Новости",
-        'time': time
+        'time': time,
+        'day': day,
+        'posts_first': posts_first,
+        'posts_two': posts_two
     }
 
     return render(request, 'index.html', context=context)
 
 def show_post(request, post_slug):
     post = get_object_or_404(News, slug=post_slug)
-
+    date = datetime.datetime.today()
+    time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
+    day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     context = {
         'post': post,
         'title': post.title,
         'cat_selected': post.cat_id,
+        'time': time,
+        'day': day,
     }
 
     return render(request, 'post.html', context=context)
