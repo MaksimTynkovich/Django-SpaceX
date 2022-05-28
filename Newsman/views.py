@@ -13,22 +13,22 @@ import datetime
 
 def index(request):
     posts = News.objects.all()
-    recommendations_posts = posts.all()[:3]
-    posts_first = posts.all()[:3]
-    posts_two = posts.all()[3:]
+    recommendations_posts = posts.all()
+    posts_first = posts.all()
+    posts_two = posts.all()
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     context = {
-        'recommendations_posts': recommendations_posts,
+        'recommendations_posts': recommendations_posts.filter(is_published=True)[:3],
         'title': "Новости",
         'time': time,
         'day': day,
-        'posts_first': posts_first,
-        'posts_two': posts_two
+        'posts_first': posts_first.filter(is_published=True)[:3],
+        'posts_two': posts_two.filter(is_published=True)[3:]
     }
-
     return render(request, 'index.html', context=context)
+
 
 def show_post(request, post_slug):
     post = get_object_or_404(News, slug=post_slug)
@@ -38,13 +38,17 @@ def show_post(request, post_slug):
     context = {
         'post': post,
         'title': post.title,
-        'cat_selected': post.cat_id,
         'time': time,
         'day': day,
     }
-
     return render(request, 'post.html', context=context)
 
+def get_category(request, category_slug):
+#     news = News.objects.filter(category_id=category_id) # Фильтрация по категориям
+#     category = Category.objects.get(pk=category_slug)
+    category = get_object_or_404(Category, slug=category_slug)
+    news = News.objects.all()
+    return render(request, 'category.html', {'news': news})
 
 def logout_user(request):
     logout(request)

@@ -21,7 +21,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_filter = ('is_published', 'time_create')
     prepopulated_fields = {"slug": ("title",)}
-    fields = ('title', 'slug', 'cat', 'content', 'photo', 'get_html_photo', 'is_published', 'time_create', 'time_update')
+    fields = ('title', 'slug', 'category', 'content', 'photo', 'get_html_photo', 'is_published', 'time_create', 'time_update')
     readonly_fields = ('time_create', 'time_update', 'get_html_photo')
 
     def get_html_photo(self, object):
@@ -30,13 +30,20 @@ class NewsAdmin(admin.ModelAdmin):
 
     get_html_photo.short_description = "Предпросмотр"
 
-
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    list_display_links = ('id', 'name')
-    search_fields = ('name',)
-    prepopulated_fields = {"slug": ("name",)}
+    list_display = ('id', 'title')
+    list_display_links = ('id', 'title')
+    search_fields = ('title',)
+    prepopulated_fields = {"slug": ("title",)}
 
-admin.site.register(Profile)
+
+# class CategoryAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'name')
+#     list_display_links = ('id', 'name')
+#     search_fields = ('name',)
+#     prepopulated_fields = {"slug": ("name",)}
+
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Profile)
+# admin.site.register(Category, CategoryAdmin)
