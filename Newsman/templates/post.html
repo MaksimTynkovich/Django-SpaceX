@@ -8,12 +8,12 @@
     <div class="post">
         <div class="post-title">{{post.title | truncatechars:117}}</div>
         <div class="post-date">
-            {% if post.time_create|date:"d m Y" == time %}
+            {% if post.time_create|date:"j m Y" == time %}
             Сегодня
-            {% elif post.time_create|date:"d m Y" == day %}
+            {% elif post.time_create|date:"j m Y" == day %}
             Вчера
             {% else %}
-            {{post.time_create | date:"d"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+            {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"M"}}</span>,
             {{post.time_create | date:"Y"}}
             {% endif %}
         </div>

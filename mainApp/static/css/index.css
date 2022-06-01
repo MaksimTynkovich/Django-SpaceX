@@ -36,11 +36,11 @@ a{
 .recommendations_tag{
     display: flex;
     letter-spacing: 0.05em;
-    font-size: 11px;
+    font-size: 12px;
     background-color: #D93D3D;
     color: #fff;
     margin-right: 30px;
-    padding: 5px 12px;
+    padding: 4px 8px;
 }
 
 hr:nth-child(3n){

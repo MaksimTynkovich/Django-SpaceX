@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django_extensions.db.fields import AutoSlugField
+from slugify import slugify
+import datetime
+import random
+
+date = datetime.datetime.today()
+time = str(date.day) + '-' + str(date.month)
 
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE)
@@ -10,7 +17,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
 class News(models.Model):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
@@ -32,6 +38,14 @@ class News(models.Model):
         verbose_name = 'Новости'
         verbose_name_plural = 'Новости'
         ordering = ['-time_create']
+        
+    def save(self, *args, **kwargs):
+        if News.objects.filter(slug=slugify(self.title)).exists():
+            self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
+            super().save(*args, **kwargs)
+        else:
+            self.slug = slugify(self.title)
+            super().save(*args, **kwargs)
 
 
 class Category(models.Model):
@@ -48,3 +62,7 @@ class Category(models.Model):
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
         ordering = ['title']
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

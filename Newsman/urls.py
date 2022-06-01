@@ -14,7 +14,7 @@ urlpatterns = [
     path('logout/', logout_user, name="logout"),
     path('post/', post, name="post"),
     path('post/<slug:post_slug>/', show_post, name='post'),
-#     path('category/<slug:category_slug>/', show_category, name='category'),
     path('category/<slug:category_slug>/', get_category, name='category'),
+    path('add-news/', add_news, name='add_news'),
 
 ]

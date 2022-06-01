@@ -33,15 +33,15 @@ a{
     display: flex;
 }
 
-.recommendations_tag{
-    display: flex;
-    letter-spacing: 0.05em;
-    font-size: 11px;
-    background-color: #D93D3D;
-    color: #fff;
-    margin-right: 30px;
-    padding: 5px 12px;
-}
+/*.recommendations_tag{*/
+/*    display: flex;*/
+/*    letter-spacing: 0.05em;*/
+/*    font-size: 11px;*/
+/*    background-color: #D93D3D;*/
+/*    color: #fff;*/
+/*    margin-right: 30px;*/
+/*    padding: 5px 12px;*/
+/*}*/
 
 hr:nth-child(3n){
     display: none;

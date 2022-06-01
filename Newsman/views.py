@@ -1,3 +1,4 @@
+from unicodedata import category
 from Newsman.models import Profile
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.models import User
@@ -10,9 +11,24 @@ from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView
 import datetime
+from .forms import NewsForm
+
+def add_news(request):
+    if request.method == 'POST':
+        form = NewsForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            news = News.objects.create(**form.cleaned_data)
+            # news = form.save()
+#             print(form)
+            return redirect('/')
+    else:
+        form = NewsForm()
+    return render(request, 'add_news.html', {'form': form, 'title': 'Создать пост'})
 
 def index(request):
     posts = News.objects.all()
+    categorys = Category.objects.all()
     recommendations_posts = posts.all()
     posts_first = posts.all()
     posts_two = posts.all()
@@ -29,6 +45,11 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def get_category(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    news = News.objects.filter(category_id = category.id)
+    return render(request, 'category.html', {'news': news})
+
 
 def show_post(request, post_slug):
     post = get_object_or_404(News, slug=post_slug)
@@ -42,13 +63,6 @@ def show_post(request, post_slug):
         'day': day,
     }
     return render(request, 'post.html', context=context)
-
-def get_category(request, category_slug):
-#     news = News.objects.filter(category_id=category_id) # Фильтрация по категориям
-#     category = Category.objects.get(pk=category_slug)
-    category = get_object_or_404(Category, slug=category_slug)
-    news = News.objects.all()
-    return render(request, 'category.html', {'news': news})
 
 def logout_user(request):
     logout(request)
