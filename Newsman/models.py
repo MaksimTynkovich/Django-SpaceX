@@ -5,18 +5,37 @@ from django_extensions.db.fields import AutoSlugField
 from slugify import slugify
 import datetime
 import random
+from PIL import Image
 
-date = datetime.datetime.today()
-time = str(date.day) + '-' + str(date.month)
+
+# class Profile(models.Model):
+#     user = models.OneToOneField(User , on_delete=models.CASCADE)
+#     auth_token = models.CharField(max_length=100 )
+#     is_verified = models.BooleanField(default=False)
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return self.user.username
 
 class Profile(models.Model):
-    user = models.OneToOneField(User , on_delete=models.CASCADE)
-    auth_token = models.CharField(max_length=100 )
-    is_verified = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    bio = models.TextField()
 
     def __str__(self):
         return self.user.username
+
+    # resizing images
+    def save(self, *args, **kwargs):
+        super().save()
+
+        img = Image.open(self.avatar.path)
+
+        if img.height > 100 or img.width > 100:
+            new_img = (100, 100)
+            img.thumbnail(new_img)
+            img.save(self.avatar.path)
 
 class News(models.Model):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
@@ -41,6 +60,8 @@ class News(models.Model):
         
     def save(self, *args, **kwargs):
         if News.objects.filter(slug=slugify(self.title)).exists():
+            date = datetime.datetime.today()
+            time = str(date.day) + '-' + str(date.month)
             self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
             super().save(*args, **kwargs)
         else:

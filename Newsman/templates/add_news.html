@@ -11,7 +11,7 @@
 {% block main %}
 
 <h1>Добавить пост</h1>
-
+{% if user.is_authenticated %}
 <form style="margin-top: 100px" action="{% url 'add_news' %}" method="post">
     {% csrf_token %}
 <!--    {{ form.as_p }}-->
@@ -34,12 +34,13 @@
 
 
       <div class="mb-3">
-        <label for="{{ form.is_published.id_for_label }}" class="form-label">Опубликовано</label>
-        {{ form.is_published }}
+        <label for="{{ form.photo.id_for_label }}" class="form-label">Фото</label>
+        {{ form.photo }}
      <div class="invalid-feedback">
-         {{ form.is_published.errors }}
+         {{ form.photo.errors }}
      </div>
       </div>
+
 
       <div class="mb-3">
         <label for="{{ form.category.id_for_label }}" class="form-label">Категория</label>
@@ -50,4 +51,7 @@
       </div>
     <button type="submit" class="btn btn-primary btn-block">Add post</button>
 </form>
+{% else %}
+<div style="margin-top: 100px;">Пройдите регистрацию</div>
+{% endif %}
 {% endblock %}
