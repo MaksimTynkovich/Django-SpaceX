@@ -8,6 +8,7 @@
     <div class="post">
         <div class="post-title">{{post.title | truncatechars:117}}</div>
         <div class="post-date">
+            Author: {{post.author}} <br>
             {% if post.time_create|date:"j m Y" == time %}
             Сегодня
             {% elif post.time_create|date:"j m Y" == day %}

@@ -17,5 +17,5 @@ urlpatterns = [
     path('category/<slug:category_slug>/', get_category, name='category'),
     path('add-news/', add_news, name='add_news'),
     path('register/', RegisterView.as_view(), name='users-register'),
-    path('profile/', profile, name='users-profile'),
+    path('profile/', profile, name='user-profile'),
 ]

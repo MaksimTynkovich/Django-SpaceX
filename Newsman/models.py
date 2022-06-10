@@ -20,8 +20,7 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-    bio = models.TextField()
+    avatar = models.ImageField(default='default.png', upload_to='profile_images')
 
     def __str__(self):
         return self.user.username
@@ -45,6 +44,7 @@ class News(models.Model):
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
     time_update = models.DateTimeField(auto_now=True, verbose_name="Время изменения")
     is_published = models.BooleanField(default=True, verbose_name="Опубликован")
+    author = models.ForeignKey(User, verbose_name=u'автор поста', blank=True, null=True, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категория", blank=True)
 
     def __str__(self):
@@ -59,14 +59,19 @@ class News(models.Model):
         ordering = ['-time_create']
         
     def save(self, *args, **kwargs):
-        if News.objects.filter(slug=slugify(self.title)).exists():
-            date = datetime.datetime.today()
-            time = str(date.day) + '-' + str(date.month)
-            self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
-            super().save(*args, **kwargs)
+        if self.id == None:
+            if News.objects.filter(slug=slugify(self.title)).exists():
+                date = datetime.datetime.today()
+                time = str(date.day) + '-' + str(date.month)
+                self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
+                super().save(*args, **kwargs)
+            else:
+                self.slug = slugify(self.title)
+                super().save(*args, **kwargs)
         else:
             self.slug = slugify(self.title)
             super().save(*args, **kwargs)
+        
 
 
 class Category(models.Model):

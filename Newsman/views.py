@@ -55,7 +55,7 @@ def get_category(request, category_slug):
     news = News.objects.filter(category_id = category.id)
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
-    return render(request, 'category.html', {'news': news, 'time': time, 'day': day})
+    return render(request, 'category.html', {'news': news, 'title': category.title, 'time': time, 'day': day})
 
 
 def show_post(request, post_slug):
@@ -218,10 +218,9 @@ class CustomLoginView(LoginView):
 
             # Set session as modified to force data updates/cookie to be saved.
             self.request.session.modified = True
-
+    
         # else browser session will be as long as the session cookie time "SESSION_COOKIE_AGE" defined in settings.py
         return super(CustomLoginView, self).form_valid(form)
-
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'users/password_reset.html'
@@ -231,13 +230,13 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "if an account exists with the email you entered. You should receive them shortly." \
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
-    success_url = reverse_lazy('users-home')
+    success_url = reverse_lazy('home')
 
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'users/change_password.html'
     success_message = "Successfully Changed Your Password"
-    success_url = reverse_lazy('users-home')
+    success_url = reverse_lazy('home')
 
 
 @login_required
@@ -250,7 +249,7 @@ def profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users-profile')
+            return redirect(to='user-profile')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
