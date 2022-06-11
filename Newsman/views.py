@@ -25,10 +25,13 @@ def add_news(request):
     if request.method == 'POST':
         form = NewsForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
-            news = News.objects.create(**form.cleaned_data)
-            # news = form.save()
-#             print(form)
+            display_type = request.POST.get("display_type", None)
+            if display_type in ["locationbox"]:
+                form = form.save(commit=False)
+                form.author = request.user
+            else:
+                pass
+            news = form.save()
             return redirect('/')
     else:
         form = NewsForm()

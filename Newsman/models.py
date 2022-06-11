@@ -44,7 +44,8 @@ class News(models.Model):
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
     time_update = models.DateTimeField(auto_now=True, verbose_name="Время изменения")
     is_published = models.BooleanField(default=True, verbose_name="Опубликован")
-    author = models.ForeignKey(User, verbose_name=u'автор поста', blank=True, null=True, on_delete=models.CASCADE)
+    author_visible = models.BooleanField(default=True, verbose_name="Отображать автора", blank=True)
+    author = models.ForeignKey(('auth.User'), verbose_name=u'автор поста', blank=True, null=True, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категория", blank=True)
 
     def __str__(self):
