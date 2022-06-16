@@ -1,6 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.title__owl{
+    width: 924px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Rubik';
+    font-size: 44px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
 a{
     text-decoration: none;
     color: #000;
+}
+
+.links{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav_link{
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #151515;
 }
 
 .news_1{
@@ -43,7 +70,7 @@ a{
     padding: 4px 8px;
 }
 
-hr:nth-child(3n){
+hr-clear:nth-child(3n){
     display: none;
 }
 
@@ -72,6 +99,7 @@ hr:nth-child(3n){
 }
 
 .posts{
+    margin-top: 100px;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

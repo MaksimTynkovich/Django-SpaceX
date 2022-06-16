@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Добавление поста
@@ -12,10 +13,10 @@
 
 <h1>Добавить пост</h1>
 {% if user.is_authenticated %}
-<form style="margin-top: 100px" action="{% url 'add_news' %}" method="post">
+<form style="margin-top: 100px" action="{% url 'add_news' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-<!--    {{ form.as_p }}-->
-
+    <!--    {{ form.as_p }}-->
+    {{ form.media }}
      <div class="mb-3">
         <label for="{{ form.title.id_for_label }}" class="form-label">Название</label>
         {{ form.title }}
@@ -35,7 +36,6 @@
          {{ form.content.errors }}
      </div>
       </div>
-
 
       <div class="mb-3">
         <label for="{{ form.photo.id_for_label }}" class="form-label">Фото</label>

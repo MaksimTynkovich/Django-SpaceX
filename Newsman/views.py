@@ -23,14 +23,15 @@ day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
 
 def add_news(request):
     if request.method == 'POST':
-        form = NewsForm(request.POST)
+        form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             display_type = request.POST.get("display_type", None)
+            print(display_type)
             if display_type in ["locationbox"]:
+                pass
+            else:
                 form = form.save(commit=False)
                 form.author = request.user
-            else:
-                pass
             news = form.save()
             return redirect('/')
     else:

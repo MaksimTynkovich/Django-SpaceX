@@ -6,9 +6,11 @@ import re
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from ckeditor.widgets import CKEditorWidget
 
 class NewsForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget, label='')
     class Meta:
         model = News
         fields = ['title', 'content', 'author_visible', 'photo', 'is_published', 'category']
@@ -17,19 +19,20 @@ class NewsForm(forms.ModelForm):
         #     'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
         #     'category': forms.Select(attrs={'class': 'form-control'}),
         # }
-        # prepopulated_fields = {"slug": ("title",)}
 
+"""
     def clean_title(self):
         title = self.cleaned_data['title']
         if re.match(r'\d', title):
             raise ValidationError('Название не должно начинаться с цифры')
         return title
+ """
 
-    def clean_category(self):
+"""     def clean_category(self):
         category = self.cleaned_data['category']
         if category is None:
             raise ValidationError('Категория не выбрана')
-        return category
+        return category """
 
     # def save(self, *args): 
     #     self.slug = slugify(self.title)

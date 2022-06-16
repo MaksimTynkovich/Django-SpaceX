@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+
 .post{
     padding-top: 150px;
 }
@@ -15,6 +18,20 @@
     margin-top: 44px;
     font-family: 'Exo 2.0';
     font-size: 20px;
-    line-height: 150%;
     color: #646A6F;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.author{
+    margin-top: 6px;
+    font-family: 'Exo 2.0';
+    font-size: 18px;
+    color: #646A6F;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.post-content{
+    margin-top: 40px;
 }

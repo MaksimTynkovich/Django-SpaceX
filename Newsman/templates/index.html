@@ -1,12 +1,184 @@
 {% extends "base.html"%}
 {% load static %}
-    {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    {% endblock styles %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous" />
+<style>
+    .cover {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .owl-carousel .owl-slide {
+        position: relative;
+        height: 581px;
+        background-color: lightgray;
+    }
+
+    .owl-carousel .owl-slide-animated {
+        transform: translateX(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.05s;
+    }
+
+    .owl-carousel .owl-slide-animated.is-transitioned {
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.5s;
+    }
+
+    .owl-carousel .owl-slide-title.is-transitioned {
+        transition-delay: 0.2s;
+    }
+
+    .owl-carousel .owl-slide-subtitle.is-transitioned {
+        transition-delay: 0.35s;
+    }
+
+    .owl-carousel .owl-slide-cta.is-transitioned {
+        transition-delay: 0.5s;
+    }
+
+    .owl-carousel .owl-dots,
+    .owl-carousel .owl-nav {
+        position: absolute;
+    }
+
+    .owl-carousel .owl-dots .owl-dot,
+    .owl-carousel .owl-nav [class*="owl-"]:focus {
+        outline: none;
+    }
+</style>
+
+{% endblock styles %}
 <h1>{{post.title}}</h1>
+
 {% block main %}
+<div style="padding-top: 80px" class="owl-carousel owl-theme">
+    <div class="owl-slide d-flex align-items-center cover" style="background-image: url(https://planetofhotels.com/guide/sites/default/files/styles/paragraph__hero_banner__hb_image__1880bp/public/hero_banner/Golden-Gate-Bridge.jpg);">
+        <div class="container">
+            <div class="row justify-content-center justify-content-md-start">
+                <div class="col-10 col-md-6 static">
+                    <div class="owl-slide-text">
+                    <div style="padding-top: 150px" class="post-info">
+                        <a href="#" class="post-tag">разное</a>
+                    </div>
+                        <h1 class="title__owl">Tesla Megafactory: новый вид заводов Tesla для производства Megapac</h1>
+                        <div>
+                            <a href="">Читать статью</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/owl-slide-->
+
+
+    <div class="owl-slide d-flex align-items-center cover" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/owlcarousel3.jpg);">
+        <div class="container">
+            <div class="row justify-content-center justify-content-md-start">
+                <div class="col-10 col-md-6 static">
+                    <div class="owl-slide-text">
+                        <h2 class="owl-slide-animated owl-slide-title">A collection of textile samples.</h2>
+                        <div class="owl-slide-animated owl-slide-subtitle mb-3">
+                            He lay on his armour-like back, and if he lifted his head a little he could see his brown belly.
+                        </div>
+                        <a class="btn btn-primary owl-slide-animated owl-slide-cta" href="https://unsplash.com/photos/7uwbhGSH5Fg" target="_blank" role="button">See Original Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/owl-slide-->
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous"></script>
+<script>
+    $(".owl-carousel").on("initialized.owl.carousel", () => {
+        setTimeout(() => {
+            $(".owl-item.active .owl-slide-animated").addClass("is-transitioned");
+            $("section").show();
+        }, 200);
+    });
+
+    const $owlCarousel = $(".owl-carousel").owlCarousel({
+        items: 1,
+        loop: true,
+        nav: true,
+        dots: false,
+        navText: [
+            '<svg width="50" height="50" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>',
+            '<svg width="50" height="50" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>' /* icons from https://iconmonstr.com */
+        ]
+    });
+
+    $owlCarousel.on("changed.owl.carousel", e => {
+        $(".owl-slide-animated").removeClass("is-transitioned");
+
+        const $currentOwlItem = $(".owl-item").eq(e.item.index);
+        $currentOwlItem.find(".owl-slide-animated").addClass("is-transitioned");
+
+        const $target = $currentOwlItem.find(".owl-slide-text");
+        doDotsCalculations($target);
+    });
+
+    $owlCarousel.on("resize.owl.carousel", () => {
+        setTimeout(() => {
+            setOwlDotsPosition();
+        }, 50);
+    });
+
+    /*if there isn't content underneath the carousel*/
+    //$owlCarousel.trigger("refresh.owl.carousel");
+
+    setOwlDotsPosition();
+
+    function setOwlDotsPosition() {
+        const $target = $(".owl-item.active .owl-slide-text");
+        doDotsCalculations($target);
+    }
+
+    function doDotsCalculations(el) {
+        const height = el.height();
+        const {top, left} = el.position();
+        const res = height + top + 20;
+
+        // $(".owl-carousel .owl-dots").css({
+        //     top: `${res}px`,
+        //     left: `${left}px`
+        // });
+    }
+</script>
 <div class="news_1">
     <div class="container">
+        <hr style="margin-bottom: 40px">
+        <div class="links">
+            <a class="nav_link" href="">Астронавтика</a>
+            <a class="nav_link" href="">наука и космос</a>
+            <a class="nav_link" href="">Технологии</a>
+        </div>
+        <hr style="margin-top: 40px">
+
         <div class="posts">
             {% for post in posts_first %}
             <div class="post-item">
@@ -20,14 +192,18 @@
                     </a>
                 </div>
                 <div class="post-info">
+                    {% if post.category.slug is None %}
+                    <a href="#" class="recommendations_tag">разное</a>
+                    {% else %}
                     <a href='{% url 'category' post.category.slug %}' class="post-tag">{{post.category}}</a>
+                    {% endif %}
                     <div class="post-date">
                         {% if post.time_create|date:"j m Y" == time %}
                         Сегодня
                         {% elif post.time_create|date:"j m Y" == day %}
                         Вчера
                         {% else %}
-                        {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+                        {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"E"}}</span>,
                         {{post.time_create | date:"Y"}}
                         {% endif %}
                     </div>
@@ -50,7 +226,11 @@
                     <div class="recommendations_content">
                         <div class="recommendations_info">
                             <div class="recommendations_tag_wrapper">
-                    <a href="{% url 'category' post.category.slug %}" class="recommendations_tag">{{post.category}}</a>
+                                {% if post.category.slug is None %}
+                                <a href="#" class="recommendations_tag">разное</a>
+                                {% else %}
+                                <a href="{% url 'category' post.category.slug %}" class="recommendations_tag">{{post.category}}</a>
+                                {% endif %}
                             </div>
                             <div class="recommendations_date">
                                 {% if post.time_create|date:"j m Y" == time %}
@@ -58,7 +238,7 @@
                                 {% elif post.time_create|date:"j m Y" == day %}
                                 Вчера
                                 {% else %}
-                                {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+                                {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"E"}}</span>,
                                 {{post.time_create | date:"Y"}}
                                 {% endif %}
                             </div>
@@ -93,7 +273,7 @@
                         {% elif post.time_create|date:"j m Y" == day %}
                         Вчера
                         {% else %}
-                        {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+                        {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"E"}}</span>,
                         {{post.time_create | date:"Y"}}
                         {% endif %}
                     </div>

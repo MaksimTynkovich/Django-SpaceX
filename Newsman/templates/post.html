@@ -2,23 +2,40 @@
 {% load static %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/btnprev.css' %}">
 {% endblock styles %}
 {% block main %}
+
 <div class="container">
     <div class="post">
+    <a href="/" class="btn-prev">
+        <div class="arrow-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
+            <path d="M8 1L2 7L8 13" stroke="#D93D3D" stroke-width="1.5"/>
+        </svg>
+            </div>
+        <div class="text-prev">Технологии</div>
+    </a>
         <div class="post-title">{{post.title | truncatechars:117}}</div>
         <div class="post-date">
-            Author: {{post.author}} <br>
             {% if post.time_create|date:"j m Y" == time %}
             Сегодня
             {% elif post.time_create|date:"j m Y" == day %}
             Вчера
             {% else %}
-            {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"M"}}</span>,
+            {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"E"}}</span>,
             {{post.time_create | date:"Y"}}
             {% endif %}
         </div>
-        {{post.content | safe}}
+            {% if post.author == None %}
+            {% else %}
+        <div class="author">
+            Автор: {{post.author}}
+        </div>
+            {% endif %}
+        <div class="post-content">
+            {{post.content | safe}}
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -7,16 +7,6 @@ import datetime
 import random
 from PIL import Image
 
-
-# class Profile(models.Model):
-#     user = models.OneToOneField(User , on_delete=models.CASCADE)
-#     auth_token = models.CharField(max_length=100 )
-#     is_verified = models.BooleanField(default=False)
-#     created_at = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.user.username
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -45,8 +35,8 @@ class News(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name="Время изменения")
     is_published = models.BooleanField(default=True, verbose_name="Опубликован")
     author_visible = models.BooleanField(default=True, verbose_name="Отображать автора", blank=True)
-    author = models.ForeignKey(('auth.User'), verbose_name=u'автор поста', blank=True, null=True, on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категория", blank=True)
+    author = models.ForeignKey('auth.User', verbose_name=u'автор поста', blank=True, null=True, on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категория", blank=True, null=True)
 
     def __str__(self):
         return self.title
