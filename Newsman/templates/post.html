@@ -37,6 +37,42 @@
             {{post.content | safe}}
         </div>
     </div>
+    <div class="read_more">
+        <div class="read_more-title">Читайте далее</div>
+        <div class="posts">
+        {% for post in posts_more %}
+        <div class="read_more-item">
+            <div class="read_more-img">
+                <a href="{{post.get_absolute_url}}">
+                    {% if post.photo %}
+                    <img src="{{ post.photo.url }}" width="373" height="300" alt="...">
+                    {% else %}
+                    <img src="{{ post.photo.url }}" width="373" height="300" alt="...">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="read_more-info">
+                {% if post.category.slug is None %}
+                <a href="#" class="recommendations_tag">Другое</a>
+                {% else %}
+                <a href='{% url 'category' post.category.slug %}' class="read_more-tag">{{post.category}}</a>
+                {% endif %}
+                <div class="read_more-date">
+                    {% if post.time_create|date:"j m Y" == time %}
+                    Сегодня
+                    {% elif post.time_create|date:"j m Y" == day %}
+                    Вчера
+                    {% else %}
+                    {{post.time_create | date:"j"}} <span id="month">{{post.time_create | date:"E"}}</span>,
+                    {{post.time_create | date:"Y"}}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="read_more-title"><a href="{{post.get_absolute_url}}">{{post.title | truncatechars:74}}</a></div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}
 

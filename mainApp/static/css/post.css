@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
 
+/*Refactoring... */
+a{
+    text-decoration: none;
+    color: #000;
+}
+
 .post{
     padding-top: 150px;
 }
@@ -34,4 +40,63 @@
 
 .post-content{
     margin-top: 40px;
+}
+
+
+.posts{
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.read_more{
+    margin-top: 150px;
+}
+
+.read_more-title{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 26px;
+}
+
+.read_more-item{
+    width: 373px;
+    margin-bottom: 46px;
+}
+
+.read_more-item:nth-child(3n-1){
+    margin-left: 39px;
+    margin-right: 39px;
+}
+
+.read_more-info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.read_more-tag{
+    display: flex;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    background-color: #D93D3D;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+.read_more-date{
+    font-family: 'Exo 2.0';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 130%;
 }

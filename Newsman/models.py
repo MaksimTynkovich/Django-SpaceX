@@ -60,10 +60,14 @@ class News(models.Model):
                 self.slug = slugify(self.title)
                 super().save(*args, **kwargs)
         else:
-            self.slug = slugify(self.title)
-            super().save(*args, **kwargs)
-        
-
+            if News.objects.filter(slug=slugify(self.title)).exists():
+                date = datetime.datetime.today()
+                time = str(date.day) + '-' + str(date.month)
+                self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
+                super().save(*args, **kwargs)
+            else:
+                self.slug = slugify(self.title)
+                super().save(*args, **kwargs)
 
 class Category(models.Model):
     title = models.CharField(max_length=150, db_index=True, verbose_name="Имя категории")

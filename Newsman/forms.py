@@ -11,14 +11,15 @@ from ckeditor.widgets import CKEditorWidget
 
 class NewsForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorWidget, label='')
+    category = forms.ModelChoiceField(empty_label = "Выберите категорию", queryset = Category.objects.all())
     class Meta:
         model = News
         fields = ['title', 'content', 'author_visible', 'photo', 'is_published', 'category']
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'class': 'form-control'}),
-        #     'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
-        #     'category': forms.Select(attrs={'class': 'form-control'}),
-        # }
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 """
     def clean_title(self):
@@ -28,11 +29,11 @@ class NewsForm(forms.ModelForm):
         return title
  """
 
-"""     def clean_category(self):
-        category = self.cleaned_data['category']
-        if category is None:
-            raise ValidationError('Категория не выбрана')
-        return category """
+#      def clean_category(self):
+#         category = self.cleaned_data['category']
+#         if category is None:
+#             raise ValidationError('Категория не выбрана')
+#         return category
 
     # def save(self, *args): 
     #     self.slug = slugify(self.title)

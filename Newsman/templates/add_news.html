@@ -6,16 +6,12 @@
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<!--Font awesome icons -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 {% endblock styles %}
 
 {% block main %}
 <div class="container">
-<h1 style="padding-top: 200px">Добавить пост</h1>
+<h1 style="padding-top: 200px">Создать пост</h1>
 {% if user.is_authenticated %}
 <form style="margin-top: 100px" action="{% url 'add_news' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -58,7 +54,7 @@
          {{ form.category.errors }}
      </div>
       </div>
-    <button type="submit" class="btn btn-dark btn-block">Add post</button>
+    <button type="submit" class="btn btn-dark btn-block">Опубликовать</button>
 </form>
 {% else %}
 <div style="margin-top: 100px;">Пройдите регистрацию</div>

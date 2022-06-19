@@ -16,6 +16,7 @@ from django.views import View
 import datetime
 from .forms import *
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 date = datetime.datetime.today()
 time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
@@ -64,6 +65,7 @@ def get_category(request, category_slug):
 
 def show_post(request, post_slug):
     post = get_object_or_404(News, slug=post_slug)
+    posts_more = News.objects.all().filter(~Q(id=post.id)).filter(category=post.category.id)[:3]
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
@@ -72,6 +74,7 @@ def show_post(request, post_slug):
         'title': post.title,
         'time': time,
         'day': day,
+        'posts_more': posts_more
     }
     return render(request, 'post.html', context=context)
 

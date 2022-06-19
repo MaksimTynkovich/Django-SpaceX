@@ -40,4 +40,3 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Profile)
-# admin.site.register(Category, CategoryAdmin)
