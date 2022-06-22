@@ -42,7 +42,7 @@ class News(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post', kwargs={'post_slug': self.slug})
+        return reverse('post', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Новости'
@@ -51,15 +51,6 @@ class News(models.Model):
         
     def save(self, *args, **kwargs):
         if self.id == None:
-            if News.objects.filter(slug=slugify(self.title)).exists():
-                date = datetime.datetime.today()
-                time = str(date.day) + '-' + str(date.month)
-                self.slug = slugify(self.title) + str(time) + '-' + str(random.randint(0, 999))
-                super().save(*args, **kwargs)
-            else:
-                self.slug = slugify(self.title)
-                super().save(*args, **kwargs)
-        else:
             if News.objects.filter(slug=slugify(self.title)).exists():
                 date = datetime.datetime.today()
                 time = str(date.day) + '-' + str(date.month)
@@ -87,3 +78,37 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+class Comment(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='user_comments',
+        on_delete=models.CASCADE
+    )
+    post = models.ForeignKey(
+        News,
+        related_name='blog_comments',
+        on_delete=models.CASCADE
+    )
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.text
+
+class Reply(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='user_replies',
+        on_delete=models.CASCADE
+    )
+    comment = models.ForeignKey(
+        Comment,
+        related_name='comment_replies',
+        on_delete=models.CASCADE
+    )
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.text

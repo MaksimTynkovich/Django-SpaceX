@@ -12,10 +12,11 @@ urlpatterns = [
     # path('verify/<auth_token>' , verify , name="verify"),
     # path('error/' , error_page , name="error"),
     # path('logout/', logout_user, name="logout"),
-    path('post/', post, name="post"),
-    path('post/<slug:post_slug>/', show_post, name='post'),
+    # path('post/', post, name="post"),
+    path('post/<slug:slug>/', show_post, name='post'),
     path('category/<slug:category_slug>/', get_category, name='category'),
     path('add-news/', add_news, name='add_news'),
     path('register/', RegisterView.as_view(), name='users-register'),
+    path('add_reply/<int:post_id>/<int:comment_id>/', add_reply, name='add_reply'),
     path('profile/', profile, name='user-profile'),
 ]

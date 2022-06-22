@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from ckeditor.widgets import CKEditorWidget
 
+class TextForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea, required=True)
+
 class NewsForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorWidget, label='')
     category = forms.ModelChoiceField(empty_label = "Выберите категорию", queryset = Category.objects.all())

@@ -63,12 +63,23 @@ def get_category(request, category_slug):
     return render(request, 'category.html', {'news': news, 'title': category.title, 'time': time, 'day': day})
 
 
-def show_post(request, post_slug):
-    post = get_object_or_404(News, slug=post_slug)
+def show_post(request, slug):
+    post = get_object_or_404(News, slug=slug)
     posts_more = News.objects.all().filter(~Q(id=post.id)).filter(category=post.category.id)[:3]
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
+
+    if request.method == "POST" and request.user.is_authenticated:
+        form = TextForm(request.POST)
+        if form.is_valid():
+            Comment.objects.create(
+                user=request.user,
+                post=post,
+                text=form.cleaned_data.get('text')
+            )
+            return redirect('post', slug=slug)
+
     context = {
         'post': post,
         'title': post.title,
@@ -77,6 +88,20 @@ def show_post(request, post_slug):
         'posts_more': posts_more
     }
     return render(request, 'post.html', context=context)
+
+@login_required(login_url='login')
+def add_reply(request, post_id, comment_id):
+    post = get_object_or_404(News, id=post_id)
+    if request.method == "POST":
+        form = TextForm(request.POST)
+        if form.is_valid():
+            comment = get_object_or_404(Comment, id=comment_id)
+            Reply.objects.create(
+                user=request.user,
+                comment=comment,
+                text=form.cleaned_data.get('text')
+            )
+    return redirect('post', slug=post.slug)
 
 # def logout_user(request):
 #     logout(request)
