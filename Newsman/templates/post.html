@@ -3,6 +3,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/btnprev.css' %}">
+
 {% endblock styles %}
 {% block main %}
 
@@ -61,6 +62,7 @@
       <div class="content">
         <ul class="d-flex flex-column">
           {% for comment in post.blog_comments.all %}
+
           <li>
             <div class="author-thumb">
               <img src="{{comment.user.get_profile_picture}}" alt="">
@@ -104,6 +106,23 @@
         </ul>
       </div>
 
+
+    <button id="btn-open">Открыть меню</button>
+
+    <nav class="comment-nav">
+        <div class="comment-container">
+            <div class="comment-title">
+                <div class="comment-title-h1">Комментарии ({{comments}})</div>
+                <div id="btn-close" class="comment-title-svg"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect width="29.4507" height="1.47254" transform="matrix(0.709512 0.704693 -0.709512 0.704693 1.04492 0.208496)" fill="#151515"/>
+                <rect width="29.4507" height="1.47254" transform="matrix(0.709512 -0.704693 0.709512 0.704693 0.0605469 20.7539)" fill="#151515"/>
+                </svg>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
 {% if posts_more %}
     <div class="read_more">
         <div class="read_more-title">Читайте далее</div>
@@ -145,4 +164,11 @@
 {% else %}
 
 {% endif %}
+<script src="{% static 'javascript/commentBar.js' %}"></script>
+
 {% endblock %}
+
+
+
+
+

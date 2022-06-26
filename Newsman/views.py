@@ -64,12 +64,14 @@ def get_category(request, category_slug):
 
 
 def show_post(request, slug):
+    replys_all = Reply.objects.all()
+    comments_all = Comment.objects.all()
+    comments = len(comments_all) + len(replys_all)
     post = get_object_or_404(News, slug=slug)
     posts_more = News.objects.all().filter(~Q(id=post.id)).filter(category=post.category.id)[:3]
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
     day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
-
     if request.method == "POST" and request.user.is_authenticated:
         form = TextForm(request.POST)
         if form.is_valid():
@@ -85,7 +87,8 @@ def show_post(request, slug):
         'title': post.title,
         'time': time,
         'day': day,
-        'posts_more': posts_more
+        'posts_more': posts_more,
+        'comments': comments
     }
     return render(request, 'post.html', context=context)
 
@@ -101,6 +104,7 @@ def add_reply(request, post_id, comment_id):
                 comment=comment,
                 text=form.cleaned_data.get('text')
             )
+            print(comment.comment_replies.count)
     return redirect('post', slug=post.slug)
 
 # def logout_user(request):

@@ -100,3 +100,55 @@ a{
     font-size: 17px;
     line-height: 130%;
 }
+
+.comment-nav {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    height: 100vh;
+    width: 200px;
+    transition: 0.5s;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    white-space: nowrap;  /* предотвращает сползание элементов на следующую строку */
+}
+
+.comment-nav::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.comment-nav.open {
+    right: 0px;
+    height: 100vh;
+    width: 597px;
+    transition: 0.5s;
+    background-color: #F6F6F7;
+}
+
+.comment-container{
+    margin-top: 150px;
+    margin-left: 63px;
+    margin-right: 119px;
+}
+
+.comment-title{
+    display: flex;
+}
+
+.comment-title-h1{
+    font-family: 'Exo 2.0';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 140%;
+    color: #151515;
+}
+
+.comment-title-svg{
+    cursor: pointer;
+    margin-top: 13px;
+    margin-left: 140px;
+}
+
