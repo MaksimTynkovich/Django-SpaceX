@@ -1,6 +1,9 @@
 const btnMenuOpen = document.getElementById('btn-open')
 const btnMenuClose = document.getElementById('btn-close')
+const btnResponse = document.getElementById('response-btn')
+const comment = document.getElementById('comment-reply')
 const menu = document.querySelector(".comment-nav");
+
 const toggleMenu = function () {
     menu.classList.toggle("open");
 }
@@ -24,4 +27,8 @@ document.addEventListener("click", function (e) {
     if (!its_menu && !its_btnMenu && menu_is_active) {
         toggleMenu();
     }
+});
+
+btnResponse.addEventListener("click", function () {
+    comment.style.display == 'block' ? comment.style.display = 'none' : comment.style.display = 'block'
 });

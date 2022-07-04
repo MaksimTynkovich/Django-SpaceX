@@ -56,17 +56,15 @@
             <form class="comment-form" id="comment" action="{% url 'post' post.slug %}" method="POST">
                 {% csrf_token %}
                 <input name="text" class="comment-input" id="message" placeholder="Ваш комментарий" required=""></input>
-<!--                        <fieldset>-->
-<!--                            {% if request.user.is_authenticated %}-->
-<!--                            <button type="submit" id="form-submit" class="main-button">Submit</button>-->
-<!--                            {% else %}-->
-<!--                            <a href="{% url 'login' %}" id="form-submit" class="main-button">Login to comment</a>-->
-<!--                            {% endif %}-->
-<!--                        </fieldset>-->
+                <div class="comment-btn-submit">
+                            {% if request.user.is_authenticated %}
+                            <div class="comment-btn-cancel">отмена</div> <button type="submit" id="form-submit" class="main-button">Отправить</button>
+                            {% else %}
+                            <a href="{% url 'login' %}" id="form-submit" class="main-button">Login to comment</a>
+                            {% endif %}
+                </div>
             </form>
 
-
-            <ul class="d-flex flex-column">
                 {% for comment in post.blog_comments.all %}
 
                     <div class="comment-content">
@@ -79,23 +77,27 @@
                                 <div>{{comment.created_date | date:"f d" }}</div>
                             </div>
                         </div>
-                        <p>{{comment.text}}</p>
-<!--                        <form class="submit-reply my-2" id="comment" action="{% url 'add_reply' post.id comment.id %}" method="POST">-->
-<!--                            {% csrf_token %}-->
-<!--                            <div class="row">-->
-<!--                                <div class="col-lg-12">-->
-<!--                                        <textarea name="text" rows="2" cols="50" id="message" placeholder="Type your reply" required=""></textarea>-->
-<!--                                </div>-->
-<!--                                <div class="col-lg-12">-->
-<!--                                        {% if request.user.is_authenticated %}-->
-<!--                                        <button type="submit" id="form-submit" class="main-button reply-button">Reply</button>-->
-<!--                                        {% else %}-->
-<!--                                        <a href="{% url 'login' %}" id="form-submit" class="main-button reply-button">Login to reply</a>-->
-<!--                                        {% endif %}-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </form>-->
+                        <div class="comment-user-text">{{comment.text}}</div>
+                        <div class="comment-btn-response" id="response-btn" >ответить</div>
+
+                        <form class="submit-reply my-2" id="comment-reply" action="{% url 'add_reply' post.id comment.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                        <textarea name="text" rows="2" cols="50" id="message" placeholder="Type your reply" required=""></textarea>
+                                </div>
+                                <div class="col-lg-12">
+                                        {% if request.user.is_authenticated %}
+                                        <button type="submit" id="form-submit" class="main-button reply-button">Reply</button>
+                                        {% else %}
+                                        <a href="{% url 'login' %}" id="form-submit" class="main-button reply-button">Login to reply</a>
+                                        {% endif %}
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
+
 <!--                {% for reply in comment.comment_replies.all %}-->
 <!--                <li class="replied">-->
 <!--                    <div class="author-thumb">-->
@@ -108,9 +110,6 @@
 <!--                </li>-->
 <!--                {% endfor %}-->
                 {% endfor %}
-            </ul>
-
-
 
         </div>
     </nav>

@@ -162,11 +162,16 @@ a{
     width: 413px;
 }
 
+.comment-content{
+    margin-bottom: 28px;
+}
+
 .comment-info{
     display: flex;
 }
 
 .comment-user-image img{
+    margin-right: 9px;
     border-radius: 50px;
 }
 
@@ -177,4 +182,55 @@ a{
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #151515;
+}
+
+.comment-btn-submit button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Rubik';
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #D93D3D;
+}
+
+.comment-btn-cancel {
+    margin-right: 20px;
+    font-family: 'Rubik';
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.comment-btn-submit{
+    display: flex;
+    justify-content: flex-end;
+    visibility: hidden;
+    opacity: 0;
+    transition: .1s all;
+    margin-top: 30px;
+}
+
+input:focus + .comment-btn-submit {
+    visibility: visible;
+    opacity: 1;
+    transition: .2s all;
+}
+
+.comment-user-text{
+    margin-top: 15px;
+}
+
+.comment-btn-response{
+    font-family: 'Rubik';
+    line-height: 120%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #646A6F;
+    cursor: pointer;
+    margin-top: 18px;
+}
+
+.submit-reply{
+    display: none;
 }
