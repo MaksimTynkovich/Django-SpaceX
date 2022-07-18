@@ -18,16 +18,19 @@ from .forms import *
 from django.urls import reverse_lazy
 from django.db.models import Q
 
+
 date = datetime.datetime.today()
 time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
 day = str(date.day - 1) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
+hours = date.hour
+minutes = date.minute
 
 def add_news(request):
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             display_type = request.POST.get("display_type", None)
-            print(display_type)
+#             print(display_type)
             if display_type in ["locationbox"]:
                 pass
             else:
@@ -43,6 +46,7 @@ def index(request):
     posts = News.objects.all()
     categorys = Category.objects.all()
     recommendations_posts = posts.all()
+
     posts_first = posts.all()
     posts_two = posts.all()
     context = {
@@ -64,10 +68,18 @@ def get_category(request, category_slug):
 
 
 def show_post(request, slug):
-    replys_all = Reply.objects.all()
-    comments_all = Comment.objects.all()
-    comments = len(comments_all) + len(replys_all)
     post = get_object_or_404(News, slug=slug)
+    comments_all = Comment.objects.all().filter(post_id=post.id)
+    replys_increment = 0
+
+    answers_list = list(comments_all.values_list('id'))
+
+    for i in answers_list:
+        for x in i:
+            replys_all = Reply.objects.all().filter(comment_id=x)
+            replys_increment += replys_all.count()
+
+    comments = len(comments_all) + replys_increment
     posts_more = News.objects.all().filter(~Q(id=post.id)).filter(category=post.category.id)[:3]
     date = datetime.datetime.today()
     time = str(date.day) + ' ' + '0' + str(date.month) + ' ' + str(date.year)
@@ -86,9 +98,11 @@ def show_post(request, slug):
         'post': post,
         'title': post.title,
         'time': time,
+        'minutes': minutes,
+        'hours': hours,
         'day': day,
         'posts_more': posts_more,
-        'comments': comments
+        'comments': comments,
     }
     return render(request, 'post.html', context=context)
 
@@ -104,7 +118,6 @@ def add_reply(request, post_id, comment_id):
                 comment=comment,
                 text=form.cleaned_data.get('text')
             )
-            print(comment.comment_replies.count)
     return redirect('post', slug=post.slug)
 
 # def logout_user(request):

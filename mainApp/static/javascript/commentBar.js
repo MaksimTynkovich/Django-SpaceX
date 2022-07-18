@@ -1,4 +1,5 @@
 const btnMenuOpen = document.getElementById('btn-open')
+const btnMenuOpen2 = document.getElementById('btn-open-2')
 const btnMenuClose = document.getElementById('btn-close')
 const menu = document.querySelector(".comment-nav");
 
@@ -7,6 +8,11 @@ const toggleMenu = function () {
 }
 
 btnMenuOpen.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleMenu();
+});
+
+btnMenuOpen2.addEventListener("click", function (e) {
     e.stopPropagation();
     toggleMenu();
 });
@@ -26,12 +32,3 @@ document.addEventListener("click", function (e) {
         toggleMenu();
     }
 });
-
-
-// testsub.onclick = function () {
-//     testblockj.style.display = "none";
-// }
-
-// var parent = document.querySelector('.list-group-item');
-// var child = parent.querySelector('.filmname');
-
