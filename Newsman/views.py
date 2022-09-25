@@ -42,6 +42,12 @@ def add_news(request):
         form = NewsForm()
     return render(request, 'add_news.html', {'form': form, 'title': 'Создать пост'})
 
+def users(request):
+    return render(request, 'users.html', {'title': 'Пользователи'})
+
+def add_user(request):
+    return render(request, 'add_user.html', {'title': 'Создать пользователя'})
+
 def index(request):
     posts = News.objects.all()
     categorys = Category.objects.all()
@@ -188,7 +194,6 @@ def add_reply(request, post_id, comment_id):
 
 def post(request):
     return render(request , 'post.html')
-
 
 # def token_send(request):
 #     return render(request , 'token_send.html')

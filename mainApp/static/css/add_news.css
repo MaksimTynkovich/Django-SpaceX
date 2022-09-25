@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.links{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav_link{
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #151515;
+}
+
+.edit_title{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 130%;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #646A6F;
+}
+
+.content{
+    margin-top: 24px;
+    display: flex;
+}
+
+.content_media{
+    margin-top: 4px;
+}
+
+.content_text{
+    font-family: 'Rubik';
+    margin-left: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #BFC6CE;
+}
+
+.content_buttons{
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+}
+
+.content_release{
+    display: flex;
+}
+
+.content_publish{
+    margin-right: 40px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #D93D3D;
+}
+
+.content_save{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #646A6F;
+}
+
+.content_set{
+    display: flex;
+}
+
+.content_settings{
+    margin-left: 32px;
+}
+
+.content_tag{
+    margin-top: 28px;
+}
+
+.content_date{
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 130%;
+    text-align: right;
+    color: #151515;
+    margin-right: 70px;
+}
+
+.content_tags{
+    margin-top: 28px;
+    display: flex;
+}
+
+.tag-text{
+    display: flex;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    background-color: #D93D3D;
+    color: #fff;
+    margin-right: 8px;
+    padding: 4px 8px;
+}
+
+.tag{
+    display: flex;
+}
+
+.tag-svg{
+    margin-top: 4px;
+}

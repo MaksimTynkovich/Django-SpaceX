@@ -19,4 +19,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='users-register'),
     path('add_reply/<int:post_id>/<int:comment_id>/', add_reply, name='add_reply'),
     path('profile/', profile, name='user-profile'),
+    path('profile/users/', users, name='users'),
+    path('profile/create-user/', add_user, name='add_user'),
 ]

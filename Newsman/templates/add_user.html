@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/add_user.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock styles %}
+
+{% block main %}
+<div class="container">
+    <div class="content-wrapper">
+    <div class="fields">
+        <div class="field-title">Имя:</div>
+        <div class="field-input"><input class="input" type="text"></div>
+
+        <div class="field-title">Ник:</div>
+        <div class="field-input"><input class="input" type="text"></div>
+
+        <div class="field-title">Дата рождения:</div>
+        <div class="field-input"><input class="input" type="text"></div>
+
+        <div class="field-wrapper">
+               <div class="field-phone">
+                    <div class="field-title">Телефон:</div>
+                   <div class="field-input"><input class="input-phone" type="text"></div>
+               </div>
+
+                <div class="field-mail">
+                    <div class="field-title">Электронный адрес:</div>
+                    <div class="field-input"><input class="input-mail" type="text"></div>
+                </div>
+        </div>
+
+        <div class="field-status">
+            <div class="field-title">Статус:</div>
+            <div class="field-select">
+                <select class="status-select">
+                <option>Редактор</option>
+                <option>Администратор</option>
+            </select></div>
+
+        </div>
+
+        <div class="field-buttons">
+            <div class="field-save">Сохранить</div>
+            <div class="field-del">Очистить</div>
+        </div>
+    </div>
+
+        <div class="image-edit">
+            <div class="image-title">Аватар:</div>
+            <div class="image-wrapper">
+                <div class="image"><img src="{% static 'images/image.png' %}" alt=""></div>
+                <div class="image-menu">
+                    <div class="image-load">Загрузить</div>
+                    <div class="image-del">Удалить</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

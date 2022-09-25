@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.navbar{
+    padding-top: 150px;
+    display: flex;
+}
+
+.navbar_link{
+    margin-right: 36px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: #646A6F;
+}
+
+.menu{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_user{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #D93D3D;
+    cursor: pointer;
+}
+
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    transform: scale(1.5);
+    padding: 10px;
+}
+
+.menu_edit{
+    display: flex;
+}
+
+.menu_edit_clear{
+    margin-left: 40px;
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+.users_title{
+    display: flex;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 100%;
+    color: #000000;
+    margin-left: 60px;
+    margin-top: 44px;
+}
+
+.name{
+    margin-right: 280px;
+}
+
+.status{
+    margin-right: 140px;
+}
+
+.phone{
+    margin-right: 180px;
+}
+
+.user_checkbox{
+    margin-top: 13px;
+}
+
+.user{
+    margin-top: 31px;
+    display: flex;
+}
+
+.user-info{
+    margin-left: 38px;
+    display: flex;
+}
+
+.user-info-data{
+    margin-left: 12px;
+}
+
+.user-info-name{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.user-status{
+    margin-left: 140px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: #151515;
+}
+
+.user-phone{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: #151515;
+    margin-left: 65px;
+}
+
+.user-mail{
+    margin-left: 91px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    color: #151515;
+}
+
+.user-edit{
+    display: flex;
+}
+
+.user-edit-clear{
+    margin-left: 22px;
+    cursor: pointer;
+}
+
+.user-edit-profile{
+    cursor: pointer;
+}
+
+.user-edit{
+    margin-left: 160px;
+}
