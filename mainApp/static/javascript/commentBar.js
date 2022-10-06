@@ -1,34 +1,34 @@
-const btnMenuOpen = document.getElementById('btn-open')
-const btnMenuOpen2 = document.getElementById('btn-open-2')
-const btnMenuClose = document.getElementById('btn-close')
-const menu = document.querySelector(".comment-nav");
+const btncommentOpen = document.getElementById('btn-open')
+const btncommentOpen2 = document.getElementById('btn-open-2')
+const btncommentClose = document.getElementById('btn-close')
+const comment = document.querySelector(".comment-nav");
 
-const toggleMenu = function () {
-    menu.classList.toggle("open");
+const togglecomment = function () {
+    comment.classList.toggle("open");
 }
 
-btnMenuOpen.addEventListener("click", function (e) {
+btncommentOpen.addEventListener("click", function (e) {
     e.stopPropagation();
-    toggleMenu();
+    togglecomment();
 });
 
-btnMenuOpen2.addEventListener("click", function (e) {
+btncommentOpen2.addEventListener("click", function (e) {
     e.stopPropagation();
-    toggleMenu();
+    togglecomment();
 });
 
-btnMenuClose.addEventListener("click", function (e) {
+btncommentClose.addEventListener("click", function (e) {
     e.stopPropagation();
-    toggleMenu();
+    togglecomment();
 });
 
 document.addEventListener("click", function (e) {
     const target = e.target;
-    const its_menu = target == menu || menu.contains(target);
-    const its_btnMenu = target == btnMenuOpen;
-    const menu_is_active = menu.classList.contains("open");
+    const its_comment = target == comment || comment.contains(target);
+    const its_btncomment = target == btncommentOpen;
+    const comment_is_active = comment.classList.contains("open");
 
-    if (!its_menu && !its_btnMenu && menu_is_active) {
-        toggleMenu();
+    if (!its_comment && !its_btncomment && comment_is_active) {
+        togglecomment();
     }
 });

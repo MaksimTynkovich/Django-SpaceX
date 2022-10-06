@@ -67,3 +67,49 @@ header{
     margin-left: 28px;
     margin-right: 180px;
 }
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100vh;
+    width: 200px;
+    transition: 0.5s;
+    overflow: auto;
+    z-index: 999;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    white-space: nowrap;  /* предотвращает сползание элементов на следующую строку */
+}
+
+.nav-menu::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.nav-menu.open {
+    left: 0px;
+    height: 100vh;
+    width: 350px;
+    transition: 0.5s;
+    background-color: #fff;
+}
+
+.menu-container{
+    margin-top: 150px;
+    margin-left: 63px;
+    margin-right: 119px;
+}
+
+.menu-link{
+    margin-top: 44px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 130%;
+    /* or 36px */
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}

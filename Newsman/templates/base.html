@@ -18,7 +18,7 @@
 	<div class="container">
     <div class="inner">
 		<div class="left__block">
-        <div class="hamburger-menu">
+        <div id="menu-open" class="hamburger-menu">
             <div class="bar-top"></div>
             <div class="bar-bottom"></div>
         </div>
@@ -66,6 +66,24 @@
 	</div>
     <div style="margin-top: 32px; box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .1);"></div>
 </header>
+
+
+
+    <nav class="nav-menu">
+        <div class="menu-container">
+
+                <div class="menu-link">Профиль</div>
+                <div class="menu-link">контент</div>
+                <div class="menu-link">Статистика</div>
+                <div class="menu-link">Настройки</div>
+                <div class="menu-link">Календарь</div>
+                <div class="menu-link">Чат</div>
+
+
+        </div>
+    </nav>
+
+<script src="{% static 'javascript/MenuBar.js' %}"></script>
 {% endblock header %}
 
 {% block main %}
